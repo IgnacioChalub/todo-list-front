@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import LoginPage from "./pages/login/login-page";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import React from "react";
+import TodoList from "./pages/todo-list/todo-list";
+import Auth from "./utils/auth/Auth";
+import ErrorPage from "./pages/error/error-page";
+import TodoPage from "./pages/todo-page/todo-page";
+import Register from "./pages/register/register";
+import NotAuth from "./utils/not-auth/NotAuth";
+
+const router = createBrowserRouter([
+    {
+        path: "/*",
+        element: <ErrorPage />
+    },
+    {
+        element: <NotAuth/>,
+        children: [
+            {
+                path: "/",
+                element: <LoginPage />
+            },
+            {
+                path: "register",
+                element: <Register/>
+            },
+        ]
+    },
+    {
+        element: <Auth />,
+        children: [
+            {
+                path: "todo",
+                element: <TodoPage />,
+                children: [
+                    {
+                        path: ":id",
+                        element: <TodoList/>
+                    }
+                ]
+            },
+        ]
+    },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <RouterProvider router={router}/>
   );
 }
 
