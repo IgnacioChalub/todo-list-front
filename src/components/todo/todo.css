@@ -1,0 +1,9 @@
+.todo {
+    border-radius: 20px;
+    padding: 20px;
+    font-family: Arial;
+    background-color: #70bdc0;
+    color: #ffffff;
+    font-weight: bold;
+    width: 400px;
+}

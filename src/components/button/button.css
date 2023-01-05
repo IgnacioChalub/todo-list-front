@@ -1,0 +1,8 @@
+.custom-button {
+    border-radius: 10px;
+    border: none;
+    font-family: Arial;
+    font-weight: bold;
+    height: 40px;
+    width: 150px;
+}
